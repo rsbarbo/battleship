@@ -21,4 +21,10 @@ class BattleshipTest < Minitest::Test
       end
     end
 
+    def test_instructions_are_given
+      battleship = Battleship.new
+      assert_equal File.read("lib/instructions.txt"), battleship.instructions
+    end
+
+
 end
