@@ -12,6 +12,10 @@ class Battleship
   def game_welcome
     welcome_message
     user_input = gets.chomp.to_s.downcase
+    input_processor(user_input)
+  end
+
+  def input_processor
   end
 
   def play_game
@@ -19,6 +23,7 @@ class Battleship
 
   def instructions
     File.read("lib/instructions.txt")
+    #will call the play_game method
   end
 
   def quit_game
