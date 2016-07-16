@@ -30,10 +30,8 @@ class Battleship
     #will call the play_game method
   end
 
-
-
-
   def quit_game
+    grids.good_bye_grid
   end
 
 end

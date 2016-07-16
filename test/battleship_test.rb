@@ -28,5 +28,11 @@ class BattleshipTest < Minitest::Test
       #it will equal neil because of the puts calls, but it returns the grid
     end
 
+    def test_goodbye_message_are_given
+      battleship = Battleship.new
+      assert_equal nil, battleship.quit_game
+      #it will equal neil because of the puts calls, but it returns the grid
+    end
+
 
 end
