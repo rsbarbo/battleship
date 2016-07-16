@@ -1,8 +1,12 @@
-
+require "./lib/grids"
+require "pry"
 
 class Battleship
+  attr_reader :grids
 
-
+  def initialize
+      @grids = Grids.new
+  end
 
 
   def welcome_message
@@ -22,9 +26,12 @@ class Battleship
   end
 
   def instructions
-    File.read("lib/instructions.txt")
+    grids.intructions_grid
     #will call the play_game method
   end
+
+
+
 
   def quit_game
   end
