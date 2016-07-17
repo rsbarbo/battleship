@@ -7,7 +7,7 @@ module Battleship
     attr_reader :grids
 
     def initialize
-      @grids = Grids.new
+      @grids = Battleship::Grids.new
     end
 
     def game_welcome
