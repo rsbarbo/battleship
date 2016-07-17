@@ -12,14 +12,22 @@ class Grids
     rows << ["=>", "You do not place the correct number and size of ships."]
     rows << ["=>", "You place your fleet in impossible positions (ships overlapping or partly off the board)."]
     rows << ["=>", "All your ships have been sunk."]
-    sorted = table(["BATTLESHIP", "INSTRUCTIONS" ], *rows)
-    puts sorted
+    puts table(["BATTLESHIP", "INSTRUCTIONS" ], *rows)
+
   end
 
   def good_bye_grid
     rows = []
     rows << ["I hope you enjoyed the game!!"]
     puts table(["         GOODBYE !!"], *rows)
+  end
+
+  def difficulty_level_grid
+    rows = []
+    rows << ["(B)EGINNER", "4 x 4 grid, 2-unit boat, 3-unit boat"]
+    rows << ["(I)NTERMEDIATE", "8 x 8 grid, 2-unit boat, 3-unit boat, 4-unit boat"]
+    rows << ["(A)DVANCED", "12x12 grid, 2-unit boat, 3-unit boat, 4-unit boat, 5-unit boat"]
+    puts table(["BATTLESHIP", "DIFFICULTY LEVEL" ], *rows)
   end
 
 end
