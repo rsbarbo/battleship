@@ -9,5 +9,8 @@ module Battleship
       @difficulty_level = difficulty_input
     end
 
+
+    
+
   end
 end
