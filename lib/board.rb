@@ -1,30 +1,20 @@
 require "pry"
-require "./lib/grids"
+require "./lib/ships"
 
-module Battleship
-  class Board
-    attr_reader :difficulty_level, :board_size
+class Board
+  attr_reader :board_grid, :ships
 
-    def initialize(difficulty_input)
-      @grids = Battleship::Grids.new
-      @difficulty_level = board_director(difficulty_input)
-      @board_size = 0
-      @fleet_size = 0
-    end
-
-
-
-    def beginner_level
-      board(@board_size = 4)
-    end
-
-    def intermediate_level
-      board(@board_size = 8)
-    end
-
-    def advanced_level
-      board(@board_size = 12)
-    end
-
+  def self.default_board
+    Array.new(10) { Array.new(10) {nil} }
   end
-end
+
+  def initialize(board = Board.default_board)
+    @board_grid = board
+    @ships = Ships.create_ships
+    rand_populate_board
+  end
+
+  def place_random_ship
+    x, y = rand(@board_grid.length), rand(@board_grid[0].length)
+    self[[x,y]] = :S
+  end
