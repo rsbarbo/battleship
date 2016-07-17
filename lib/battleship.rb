@@ -53,7 +53,17 @@ module Battleship
       grids.difficulty_level_grid
       p "Please choose difficulty level:"
       difficult_input = gets.chomp.to_s.downcase
-      Battleship::GameBoard.new(difficult_input)
+      board_director(difficult_input)
+    end
+
+    def board_director(difficult_input)
+      if difficult_input == "b" || difficult_input == "beginner"
+        #will connect to board to create game
+      elsif difficult_input == "i" || difficult_input == "intermediate"
+        #will connect to board to create game
+      elsif difficult_input == "a" || difficult_input == "advanced"
+        #will connect to board to create game
+      end
     end
 
     def instructions
