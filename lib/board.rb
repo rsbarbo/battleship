@@ -5,7 +5,7 @@ class Board
   attr_reader :board_grid, :ships
 
   def self.default_board
-    Array.new(10) { Array.new(10) {nil} }
+    Array.new(4) { Array.new(4) {nil} }
   end
 
   def initialize(board = Board.default_board)
@@ -22,10 +22,10 @@ class Board
   def attack(pos)
     if valid_move?(pos)
       if self[pos] == :S
-        self[pos] = :X
+        self[pos] = :H
         puts "Congrats, it is a hit!"
       else
-        self[pos] = :O
+        self[pos] = :M
         puts "Sorry, you have missed..."
       end
     else
@@ -39,8 +39,9 @@ class Board
   end
 
   def render
-    print "     1    2    3    4    5    6    7    8    9   10\n"
-    print "   _________________________________________________\n"
+    print "    COMPUTER'S BOARD\n"
+    print "     1    2    3    4\n"
+    print "   ___________________\n"
     @board_grid.each_with_index do |row, row_num|
       row.each_with_index do |square, col|
         if col == 0

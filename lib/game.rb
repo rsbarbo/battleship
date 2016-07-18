@@ -4,7 +4,7 @@ require "./lib/ships"
 class Game
 
 
-  LETTER = [*"a".."j"]
+  LETTER = [*"a".."d"]
 
   attr_accessor :board
 
@@ -14,7 +14,7 @@ class Game
   end
 
   def make_move
-    puts  "Please provide attack position, example (A, 1)"
+    puts  "Please provide attack position, example (A1)"
     attack_input = gets.chomp.split(//, 2)
     return "Invalid move" unless valid_move?(attack_input)
 
@@ -41,7 +41,7 @@ class Game
   end
 
   def valid_move?(pos)
-    return true if LETTER.include?(pos[0].downcase) && (pos[1].to_i.between?(1, 10))
+    return true if LETTER.include?(pos[0].downcase) && (pos[1].to_i.between?(1, 4))
     false
   end
 
@@ -51,26 +51,5 @@ class Game
     end
     true
   end
-
-end
-
-
-if __FILE__ == $PROGRAM_NAME
-  system("clear")
-  print "Please enter your name >> "
-  name = gets.chomp
-  puts "Hello #{name}, I hope you are ready to play!\n We are starting in..."
-  sleep(2)
-  puts "3"
-  sleep(1)
-  puts "2"
-  sleep(1)
-  puts "1"
-  sleep(1)
-  puts "Here we gooo...."
-  system("clear")
-
-  game = Game.new(name)
-  game.play
 
 end

@@ -22,12 +22,15 @@ class Grids
     puts table(["         GOODBYE !!"], *rows)
   end
 
-  def difficulty_level_grid
+  def computer_msg_ships_laid
     rows = []
-    rows << ["(B)EGINNER", "4 x 4 grid, 2-unit boat, 3-unit boat"]
-    rows << ["(I)NTERMEDIATE", "8 x 8 grid, 2-unit boat, 3-unit boat, 4-unit boat"]
-    rows << ["(A)DVANCED", "12x12 grid, 2-unit boat, 3-unit boat, 4-unit boat, 5-unit boat"]
-    puts table(["BATTLESHIP", "DIFFICULTY LEVEL" ], *rows)
+    rows << ["I have laid out my ships on the grid."]
+    rows << ["You now need to layout your two ships."]
+    rows << ["The first is two units long and the"]
+    rows << ["second is three units long."]
+    rows << ["The grid has A1 at the top left and D4 at the bottom right"]
+    rows << ["Enter the squares for the two-unit ship:"]
+    puts table(["                      MESSAGE"], *rows)
   end
 
 end
