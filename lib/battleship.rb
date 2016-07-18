@@ -1,12 +1,14 @@
 require "./lib/grids"
 require "./lib/board"
+require "./lib/game"
 require "pry"
 
 class Battleship
-  attr_reader :grids
+  attr_reader :grids, :game
 
   def initialize
     @grids = Grids.new
+    @game = Game.new
   end
 
   def game_welcome
@@ -45,29 +47,22 @@ class Battleship
   end
 
   def play_game
-    difficulty_level
-  end
-
-  def difficulty_level
-    grids.difficulty_level_grid
-    p "Please choose difficulty level:"
-    difficult_input = gets.chomp.to_s.downcase
-    board_director(difficult_input)
-  end
-
-  def board_director(difficult_input)
-    if difficult_input == "b" || difficult_input == "beginner"
-      #will connect to board to create game
-    elsif difficult_input == "i" || difficult_input == "intermediate"
-      #will connect to board to create game
-    elsif difficult_input == "a" || difficult_input == "advanced"
-      #will connect to board to create game
+    if __FILE__ == $PROGRAM_NAME
+      system("clear")
+      print "Please enter your name >> "
+      name = gets.chomp
+      puts "Hello #{name}, I hope you are ready to play!\n We are starting in..."
+      sleep(1)
+      puts "3"
+      sleep(0.5)
+      puts "2"
+      sleep(0.5)
+      puts "1"
+      sleep(0.5)
+      system("clear")
+      game.play
     end
   end
-
-  #you will have to create either here or in the board the set up for each
-  #level of difficulty, the secret is to create a dinamic board that will
-  #take size base on the user input
 
   def instructions
     grids.intructions_grid
