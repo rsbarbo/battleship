@@ -22,6 +22,7 @@ class Grids
     puts table(["         GOODBYE !!"], *rows)
   end
 
+
   def computer_msg_ships_laid
     rows = []
     rows << ["I have laid out my ships on the grid."]

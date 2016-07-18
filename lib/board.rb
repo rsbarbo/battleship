@@ -5,6 +5,7 @@ class Board
   attr_reader :board_grid, :ships
 
   def self.default_board
+
     Array.new(4) { Array.new(4) {nil} }
   end
 

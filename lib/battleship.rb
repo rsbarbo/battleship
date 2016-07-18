@@ -75,4 +75,5 @@ class Battleship
 
 end
 
-Battleship.new.game_welcome
+battle = Battleship.new
+battle.game_welcome
