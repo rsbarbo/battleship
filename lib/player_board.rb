@@ -11,13 +11,11 @@ class PlayerBoard
 
   def initialize(board = PlayerBoard.default_board)
     @board_grid = board
-    binding.pry
     @ships = Ships.create_ships
     rand_populate_board
   end
 
   def place_ship
-    binding.pry
     x, y = rand(@board_grid.length), rand(@board_grid[0].length)
     self[[x,y]] = :Ship
   end

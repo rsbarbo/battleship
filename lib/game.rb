@@ -25,13 +25,12 @@ class Game
 
   def computer_make_move
     pos = []
+
     computer_attack.split.each do |space|
-      if LETTER.include?(space.downcase)
-        pos << (space.downcase.ord - 97)
-      else
-        pos << space.to_i - 1
-      end
+      pos.unshift(space[1].to_i - 1)
+      pos.unshift(space[0].downcase.ord - 97)
     end
+    player_board.attack(pos)
   end
 
   def make_move
@@ -47,7 +46,7 @@ class Game
         pos << space.to_i - 1
       end
     end
-    hit = computer_board.attack(pos)
+    computer_board.attack(pos)
   end
 
   def play
