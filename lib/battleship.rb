@@ -1,5 +1,5 @@
 require "./lib/grids"
-require "./lib/board"
+require "./lib/computer_board"
 require "./lib/game"
 require "pry"
 

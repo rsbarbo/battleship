@@ -1,7 +1,7 @@
 require "pry"
 require "./lib/ships"
 
-class Board
+class PlayerBoard
   attr_reader :board_grid, :ships
 
   def self.default_board
@@ -9,7 +9,7 @@ class Board
     Array.new(4) { Array.new(4) {nil} }
   end
 
-  def initialize(board = Board.default_board)
+  def initialize(board = PlayerBoard.default_board)
     @board_grid = board
     @ships = Ships.create_ships
     rand_populate_board
@@ -24,7 +24,7 @@ class Board
     if valid_move?(pos)
       if self[pos] == :S
         self[pos] = :H
-        puts "Congrats, it is a hit!"
+        puts "Congrats, it is a hit!" 
       else
         self[pos] = :M
         puts "Sorry, you have missed..."
@@ -40,7 +40,8 @@ class Board
   end
 
   def render
-    print "    COMPUTER'S BOARD\n"
+    print " **********************\n"
+    print "    YOUR BOARD       \n"
     print "     1    2    3    4\n"
     print "   ___________________\n"
     @board_grid.each_with_index do |row, row_num|

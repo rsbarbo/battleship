@@ -1,4 +1,5 @@
-require "./lib/board"
+require "./lib/computer_board"
+require "./lib/player_board"
 require "./lib/ships"
 
 class Game
@@ -6,11 +7,12 @@ class Game
 
   LETTER = [*"a".."d"]
 
-  attr_accessor :board
+  attr_accessor :computer_board, :player_board
 
-  def initialize(player = "Player 1", board = Board.new)
+  def initialize(player = "Player 1", player_board = PlayerBoard.new, computer_board = ComputerBoard.new)
     @player = player
-    @board = board
+    @player_board = player_board
+    @computer_board = computer_board
   end
 
   def make_move
@@ -26,18 +28,20 @@ class Game
         pos << space.to_i - 1
       end
     end
-    hit = board.attack(pos)
+    hit = computer_board.attack(pos)
   end
 
   def play
-    board.render
+    computer_board.render
+    player_board.render
     until won?
       make_move
       sleep(1)
       system("clear")
-      board.render
+      computer_board.render
+      player_board.render
     end
-    puts "Congrats! You sunk all the enemy ships"
+    puts "Congrats! You sunk all the enea1my ships"
   end
 
   def valid_move?(pos)
@@ -46,7 +50,7 @@ class Game
   end
 
   def won?
-    board.board_grid.map do |row|
+    computer_board.board_grid.map do |row|
       return false if row.include?(:S)
     end
     true
