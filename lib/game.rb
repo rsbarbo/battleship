@@ -57,7 +57,7 @@ class Game
       sleep(1)
       puts "COMPUTER PLAYING HAHA"
       computer_make_move
-      sleep(1)
+      sleep(3)
       system("clear")
       computer_board.render
       player_board.render

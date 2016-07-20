@@ -21,22 +21,13 @@ class PlayerBoard
   end
 
   def attack(pos)
-    if valid_move?(pos)
-      if self[pos] == :Ship
-        self[pos] = :H
-        puts "Congrats, it is a hit!"
-      else
-        self[pos] = :M
-        puts "Sorry, you have missed..."
-      end
+    if self[pos] == :Ship
+      self[pos] = :H
+      puts "UH OH, COMPUTER GOT YA! IT'S A HIT!"
     else
-      puts "You already fired there... Please try again"
+      self[pos] = :M
+      puts "LOL, COMPUTER MISSED"
     end
-  end
-
-  def valid_move?(pos)
-    return true if self[pos] == nil || self[pos] == :Ship
-    false
   end
 
   def render

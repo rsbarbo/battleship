@@ -16,13 +16,22 @@ class ComputerBoard
   end
 
   def attack(position)
-    if self[position] == :Ship
-      self[position] = :H
-      puts "Uh oh, computer got a a hit!"
+    if valid_move?(position)
+      if self[position] == :Ship
+        self[position] = :H
+        puts "Congrats, it is a hit!"
+      else
+        self[position] = :M
+        puts "Sorry, you have missed..."
+      end
     else
-      self[position] = :M
-      puts "computer missed shot, you are lucky..."
+      puts "You already fired there... Please try again"
     end
+  end
+
+  def valid_move?(position)
+    return true if self[position] == nil || self[position] == :Ship
+    false
   end
 
   def render
