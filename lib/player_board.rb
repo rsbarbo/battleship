@@ -11,20 +11,22 @@ class PlayerBoard
 
   def initialize(board = PlayerBoard.default_board)
     @board_grid = board
+    binding.pry
     @ships = Ships.create_ships
     rand_populate_board
   end
 
-  def place_random_ship
+  def place_ship
+    binding.pry
     x, y = rand(@board_grid.length), rand(@board_grid[0].length)
-    self[[x,y]] = :S
+    self[[x,y]] = :Ship
   end
 
   def attack(pos)
     if valid_move?(pos)
-      if self[pos] == :S
+      if self[pos] == :Ship
         self[pos] = :H
-        puts "Congrats, it is a hit!" 
+        puts "Congrats, it is a hit!"
       else
         self[pos] = :M
         puts "Sorry, you have missed..."
@@ -35,7 +37,7 @@ class PlayerBoard
   end
 
   def valid_move?(pos)
-    return true if self[pos] == nil || self[pos] == :S
+    return true if self[pos] == nil || self[pos] == :Ship
     false
   end
 
@@ -50,7 +52,7 @@ class PlayerBoard
           print "#{(row_num + 97).chr.upcase} | "
         end
 
-        if square.nil? || square == :S
+        if square.nil? || square == :Ship
           print "[ ]  "
         else
           print "[#{square}]  "
@@ -79,7 +81,7 @@ class PlayerBoard
   def placed_ship(start, dir, length)
     i = 0
     while i < length
-      self[[start[0] + (dir[0] * i), start[1] + (dir[1] * i)]] = :S
+      self[[start[0] + (dir[0] * i), start[1] + (dir[1] * i)]] = :Ship
       i += 1
     end
   end
@@ -108,3 +110,5 @@ class PlayerBoard
 
 
 end
+
+PlayerBoard.new.place_ship

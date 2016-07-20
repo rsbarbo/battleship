@@ -1,4 +1,5 @@
 require "./lib/computer_board"
+require "./lib/computer_moves"
 require "./lib/player_board"
 require "./lib/ships"
 
@@ -7,12 +8,30 @@ class Game
 
   LETTER = [*"a".."d"]
 
-  attr_accessor :computer_board, :player_board
+  attr_accessor :computer_board, :player_board, :computer_moves
 
   def initialize(player = "Player 1", player_board = PlayerBoard.new, computer_board = ComputerBoard.new)
     @player = player
     @player_board = player_board
     @computer_board = computer_board
+    @computer_moves = ComputerMoves.new.moves_to_play
+  end
+
+  def computer_attack
+    move_to_play = computer_moves.sample
+    computer_moves.delete(move_to_play)
+    move_to_play
+  end
+
+  def computer_make_move
+    pos = []
+    computer_attack.split.each do |space|
+      if LETTER.include?(space.downcase)
+        pos << (space.downcase.ord - 97)
+      else
+        pos << space.to_i - 1
+      end
+    end
   end
 
   def make_move
@@ -34,8 +53,11 @@ class Game
   def play
     computer_board.render
     player_board.render
-    until won?
+    until won? #|| computer_won?
       make_move
+      sleep(1)
+      puts "COMPUTER PLAYING HAHA"
+      computer_make_move
       sleep(1)
       system("clear")
       computer_board.render
@@ -51,7 +73,7 @@ class Game
 
   def won?
     computer_board.board_grid.map do |row|
-      return false if row.include?(:S)
+      return false if row.include?(:Ship)
     end
     true
   end

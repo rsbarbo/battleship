@@ -15,18 +15,13 @@ class ComputerBoard
     rand_populate_board
   end
 
-  def place_random_ship
-    x, y = rand(@board_grid.length), rand(@board_grid[0].length)
-    self[[x,y]] = :S
-  end
-
-  def attack(pos)
-    if valid_move?(pos)
-      if self[pos] == :S
-        self[pos] = :H
+  def attack(position)
+    if valid_move?(position)
+      if self[position] == :Ship
+        self[position] = :H
         puts "Congrats, it is a hit!"
       else
-        self[pos] = :M
+        self[position] = :M
         puts "Sorry, you have missed..."
       end
     else
@@ -34,8 +29,8 @@ class ComputerBoard
     end
   end
 
-  def valid_move?(pos)
-    return true if self[pos] == nil || self[pos] == :S
+  def valid_move?(position)
+    return true if self[position] == nil || self[position] == :Ship
     false
   end
 
@@ -49,7 +44,7 @@ class ComputerBoard
           print "#{(row_num + 97).chr.upcase} | "
         end
 
-        if square.nil? || square == :S
+        if square.nil? || square == :Ship
           print "[ ]  "
         else
           print "[#{square}]  "
@@ -78,7 +73,7 @@ class ComputerBoard
   def placed_ship(start, dir, length)
     i = 0
     while i < length
-      self[[start[0] + (dir[0] * i), start[1] + (dir[1] * i)]] = :S
+      self[[start[0] + (dir[0] * i), start[1] + (dir[1] * i)]] = :Ship
       i += 1
     end
   end
