@@ -42,21 +42,19 @@ class Battleship
   end
 
   def play_game
-    if __FILE__ == $PROGRAM_NAME
-      system("clear")
-      print "Please enter your name >> "
-      name = gets.chomp
-      puts "Hello #{name}, I hope you are ready to play!\n We are starting in..."
-      sleep(1)
-      puts "3"
-      sleep(0.5)
-      puts "2"
-      sleep(0.5)
-      puts "1"
-      sleep(0.5)
-      system("clear")
-      game.play
-    end
+    system("clear")
+    print "Please enter your name >> "
+    name = gets.chomp
+    puts "Hello #{name}, I hope you are ready to play!\n We are starting in..."
+    sleep(1)
+    puts "3"
+    sleep(0.5)
+    puts "2"
+    sleep(0.5)
+    puts "1"
+    sleep(0.5)
+    system("clear")
+    game.play
   end
 
   def instructions
@@ -70,5 +68,7 @@ class Battleship
 
 end
 
-battle = Battleship.new
-battle.game_welcome
+if __FILE__ == $0
+  battle = Battleship.new
+  battle.game_welcome
+end
