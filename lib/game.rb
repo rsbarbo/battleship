@@ -5,10 +5,6 @@ require "./lib/grids"
 require "./lib/ships"
 
 class Game
-
-
-  LETTER = [*"a".."d"]
-
   attr_accessor :computer_board, :player_board, :computer_moves, :grids
 
   def initialize(player = "Player 1", player_board = PlayerBoard.new, computer_board = ComputerBoard.new)
@@ -18,6 +14,8 @@ class Game
     @computer_board = computer_board
     @computer_moves = ComputerMoves.new.moves_to_play
   end
+
+  LETTER = [*"a".."d"]
 
   def computer_attack
     move_to_play = computer_moves.sample

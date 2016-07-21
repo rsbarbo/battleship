@@ -18,7 +18,6 @@ class Grids
     rows << ["=>", "You place your fleet in impossible positions (ships overlapping or partly off the board)."]
     rows << ["=>", "All your ships have been sunk."]
     puts table(["BATTLESHIP", "INSTRUCTIONS" ], *rows)
-
   end
 
   def good_bye_grid
@@ -43,6 +42,5 @@ class Grids
     rows << ["Enter the squares for the three-unit ship: (example C1 C2 C3)"]
     puts table(["                      MESSAGE"], *rows)
   end
-
-
+  
 end

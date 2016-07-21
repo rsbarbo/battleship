@@ -19,4 +19,8 @@ class PlayerBoardTest < Minitest::Test
     assert_equal :Ship, PlayerBoard.new.place_ship(0,1)
   end
 
+  def test_attack_ship
+    assert_equal nil, PlayerBoard.new.attack([0, 2])
+  end
+
 end

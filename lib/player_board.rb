@@ -4,26 +4,18 @@ require "./lib/ships"
 class PlayerBoard
   attr_reader :board_grid, :ships
 
-  LETTER_KEYS = {
-    "a" => 0,
-    "b" => 1,
-    "c" => 2,
-    "d" => 3
-  }
+  LETTER_KEYS = {"a" => 0, "b" => 1,
+                 "c" => 2, "d" => 3}
 
-  NUM_KEYS = {
-    "1" => 0,
-    "2" => 1,
-    "3" => 2,
-    "4" => 3
-  }
-
-  def self.default_board
-    Array.new(4) { Array.new(4) {nil} }
-  end
+  NUM_KEYS = {"1" => 0, "2" => 1,
+              "3" => 2, "4" => 3}
 
   def initialize(board = PlayerBoard.default_board)
     @board_grid = board
+  end
+
+  def self.default_board
+    Array.new(4) { Array.new(4) {nil} }
   end
 
   def grab_coords(ship_coords)
