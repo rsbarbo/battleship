@@ -1,6 +1,7 @@
 require "./lib/computer_board"
 require "./lib/computer_moves"
 require "./lib/player_board"
+require "./lib/grids"
 require "./lib/ships"
 
 class Game
@@ -8,10 +9,11 @@ class Game
 
   LETTER = [*"a".."d"]
 
-  attr_accessor :computer_board, :player_board, :computer_moves
+  attr_accessor :computer_board, :player_board, :computer_moves, :grids
 
   def initialize(player = "Player 1", player_board = PlayerBoard.new, computer_board = ComputerBoard.new)
     @player = player
+    @grids = Grids.new
     @player_board = player_board
     @computer_board = computer_board
     @computer_moves = ComputerMoves.new.moves_to_play
@@ -49,10 +51,20 @@ class Game
     computer_board.attack(pos)
   end
 
+  def get_them_ships
+    grids.computer_message_lay_two_ships
+    ship_coords_one = STDIN.gets.chomp
+    player_board.grab_coords(ship_coords_one)
+    puts "Put in space seperated coordinates for a big ship (3) ex: B2 B3 B4"
+    ship_coords_two = STDIN.gets.chomp
+    player_board.grab_coords(ship_coords_two)
+  end
+
   def play
+    get_them_ships
     computer_board.render
     player_board.render
-    until won? #|| computer_won?
+    until won? || computer_won?
       make_move
       sleep(1)
       puts "COMPUTER PLAYING HAHA"
@@ -62,7 +74,6 @@ class Game
       computer_board.render
       player_board.render
     end
-    puts "Congrats! You sunk all the enea1my ships"
   end
 
   def valid_move?(pos)
@@ -74,6 +85,15 @@ class Game
     computer_board.board_grid.map do |row|
       return false if row.include?(:Ship)
     end
+    puts "CONGRAT YOU WON WOW"
+    true
+  end
+
+  def computer_won?
+    player_board.board_grid.map do |row|
+      return false if row.include?(:Ship)
+    end
+    puts "LOL THE COMPUTER WON OMG"
     true
   end
 
