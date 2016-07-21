@@ -1,5 +1,5 @@
 require "./lib/grids"
-require "./lib/board"
+require "./lib/computer_board"
 require "./lib/game"
 require "pry"
 
@@ -12,14 +12,9 @@ class Battleship
   end
 
   def game_welcome
-    welcome_message
+    grids.welcome_message
     user_input = gets.chomp.to_s.downcase
     input_processor(user_input)
-  end
-
-  def welcome_message
-    p "Welcome to BATTLESHIP"
-    p "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
   end
 
   def secondary_game_welcome

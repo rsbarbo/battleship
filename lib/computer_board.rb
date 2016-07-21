@@ -1,7 +1,7 @@
 require "pry"
 require "./lib/ships"
 
-class Board
+class ComputerBoard
   attr_reader :board_grid, :ships
 
   def self.default_board
@@ -9,24 +9,19 @@ class Board
     Array.new(4) { Array.new(4) {nil} }
   end
 
-  def initialize(board = Board.default_board)
+  def initialize(board = ComputerBoard.default_board)
     @board_grid = board
     @ships = Ships.create_ships
     rand_populate_board
   end
 
-  def place_random_ship
-    x, y = rand(@board_grid.length), rand(@board_grid[0].length)
-    self[[x,y]] = :S
-  end
-
-  def attack(pos)
-    if valid_move?(pos)
-      if self[pos] == :S
-        self[pos] = :H
+  def attack(position)
+    if valid_move?(position)
+      if self[position] == :Ship
+        self[position] = :H
         puts "Congrats, it is a hit!"
       else
-        self[pos] = :M
+        self[position] = :M
         puts "Sorry, you have missed..."
       end
     else
@@ -34,13 +29,13 @@ class Board
     end
   end
 
-  def valid_move?(pos)
-    return true if self[pos] == nil || self[pos] == :S
+  def valid_move?(position)
+    return true if self[position] == nil || self[position] == :Ship
     false
   end
 
   def render
-    print "    COMPUTER'S BOARD\n"
+    print "     COMPUTER'S BOARD\n"
     print "     1    2    3    4\n"
     print "   ___________________\n"
     @board_grid.each_with_index do |row, row_num|
@@ -49,7 +44,7 @@ class Board
           print "#{(row_num + 97).chr.upcase} | "
         end
 
-        if square.nil? || square == :S
+        if square.nil? || square == :Ship
           print "[ ]  "
         else
           print "[#{square}]  "
@@ -78,7 +73,7 @@ class Board
   def placed_ship(start, dir, length)
     i = 0
     while i < length
-      self[[start[0] + (dir[0] * i), start[1] + (dir[1] * i)]] = :S
+      self[[start[0] + (dir[0] * i), start[1] + (dir[1] * i)]] = :Ship
       i += 1
     end
   end

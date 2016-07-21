@@ -1,4 +1,6 @@
-require "./lib/board"
+require "./lib/computer_board"
+require "./lib/computer_moves"
+require "./lib/player_board"
 require "./lib/ships"
 
 class Game
@@ -6,11 +8,29 @@ class Game
 
   LETTER = [*"a".."d"]
 
-  attr_accessor :board
+  attr_accessor :computer_board, :player_board, :computer_moves
 
-  def initialize(player = "Player 1", board = Board.new)
+  def initialize(player = "Player 1", player_board = PlayerBoard.new, computer_board = ComputerBoard.new)
     @player = player
-    @board = board
+    @player_board = player_board
+    @computer_board = computer_board
+    @computer_moves = ComputerMoves.new.moves_to_play
+  end
+
+  def computer_attack
+    move_to_play = computer_moves.sample
+    computer_moves.delete(move_to_play)
+    move_to_play
+  end
+
+  def computer_make_move
+    pos = []
+
+    computer_attack.split.each do |space|
+      pos.unshift(space[1].to_i - 1)
+      pos.unshift(space[0].downcase.ord - 97)
+    end
+    player_board.attack(pos)
   end
 
   def make_move
@@ -26,18 +46,23 @@ class Game
         pos << space.to_i - 1
       end
     end
-    hit = board.attack(pos)
+    computer_board.attack(pos)
   end
 
   def play
-    board.render
-    until won?
+    computer_board.render
+    player_board.render
+    until won? #|| computer_won?
       make_move
       sleep(1)
+      puts "COMPUTER PLAYING HAHA"
+      computer_make_move
+      sleep(3)
       system("clear")
-      board.render
+      computer_board.render
+      player_board.render
     end
-    puts "Congrats! You sunk all the enemy ships"
+    puts "Congrats! You sunk all the enea1my ships"
   end
 
   def valid_move?(pos)
@@ -46,8 +71,8 @@ class Game
   end
 
   def won?
-    board.board_grid.map do |row|
-      return false if row.include?(:S)
+    computer_board.board_grid.map do |row|
+      return false if row.include?(:Ship)
     end
     true
   end
