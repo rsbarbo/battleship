@@ -51,23 +51,23 @@ class Game
     computer_board.attack(pos)
   end
 
-  def get_them_ships
-    grids.computer_message_lay_two_ships
+  def get_ships_from_user
+    grids.computer_message_lay_small_ship
     ship_coords_one = STDIN.gets.chomp
     player_board.grab_coords(ship_coords_one)
-    puts "Put in space seperated coordinates for a big ship (3) ex: B2 B3 B4"
+    grids.computer_message_lay_big_ship
     ship_coords_two = STDIN.gets.chomp
     player_board.grab_coords(ship_coords_two)
   end
 
   def play
-    get_them_ships
+    get_ships_from_user
     computer_board.render
     player_board.render
     until won? || computer_won?
       make_move
       sleep(1)
-      puts "COMPUTER PLAYING HAHA"
+      puts "Computer is playing, ya better be ready"
       computer_make_move
       sleep(3)
       system("clear")
@@ -85,7 +85,7 @@ class Game
     computer_board.board_grid.map do |row|
       return false if row.include?(:Ship)
     end
-    puts "CONGRAT YOU WON WOW"
+    puts "Congratulations, you won! Wow!!"
     true
   end
 
@@ -93,7 +93,7 @@ class Game
     player_board.board_grid.map do |row|
       return false if row.include?(:Ship)
     end
-    puts "LOL THE COMPUTER WON OMG"
+    puts "Too bad, computer won, play again...."
     true
   end
 

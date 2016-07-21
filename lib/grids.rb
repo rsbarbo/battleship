@@ -40,7 +40,7 @@ class Grids
   def computer_message_lay_big_ship
     rows = []
     rows << ["The grid has A1 at the top left and D4 at the bottom right"]
-    rows << ["Enter the squares for the three-unit ship: (example A1 A2)"]
+    rows << ["Enter the squares for the three-unit ship: (example C1 C2 C3)"]
     puts table(["                      MESSAGE"], *rows)
   end
 
