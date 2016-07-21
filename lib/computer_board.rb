@@ -5,7 +5,6 @@ class ComputerBoard
   attr_reader :board_grid, :ships
 
   def self.default_board
-
     Array.new(4) { Array.new(4) {nil} }
   end
 
@@ -35,7 +34,7 @@ class ComputerBoard
   end
 
   def render
-    print "     COMPUTER'S BOARD\n"
+    print "     Computer's Board\n"
     print "     1    2    3    4\n"
     print "   ___________________\n"
     @board_grid.each_with_index do |row, row_num|
@@ -54,7 +53,7 @@ class ComputerBoard
     end
   end
 
-  protected
+  # protected
 
   def rand_populate_board
     @ships.each do |boat|
@@ -90,6 +89,7 @@ class ComputerBoard
     true
   end
 
+  #So the def [] defined the method that is used when you do my_array["key"]
   def [](pos)
     x, y = *pos
     @board_grid[x][y]
