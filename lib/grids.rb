@@ -27,16 +27,22 @@ class Grids
     puts table(["         GOODBYE !!"], *rows)
   end
 
-
-  def computer_msg_ships_laid
+  def computer_message_lay_small_ship
     rows = []
     rows << ["I have laid out my ships on the grid."]
     rows << ["You now need to layout your two ships."]
-    rows << ["The first is two units long and the"]
-    rows << ["second is three units long."]
+    rows << ["The first is two units long and the second is three units long."]
     rows << ["The grid has A1 at the top left and D4 at the bottom right"]
-    rows << ["Enter the squares for the two-unit ship:"]
+    rows << ["Enter the squares for the two-unit ship: (example A1 A2)"]
     puts table(["                      MESSAGE"], *rows)
   end
+
+  def computer_message_lay_big_ship
+    rows = []
+    rows << ["The grid has A1 at the top left and D4 at the bottom right"]
+    rows << ["Enter the squares for the three-unit ship: (example A1 A2)"]
+    puts table(["                      MESSAGE"], *rows)
+  end
+
 
 end

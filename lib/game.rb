@@ -1,6 +1,7 @@
 require "./lib/computer_board"
 require "./lib/computer_moves"
 require "./lib/player_board"
+require "./lib/grids"
 require "./lib/ships"
 
 class Game
@@ -8,10 +9,11 @@ class Game
 
   LETTER = [*"a".."d"]
 
-  attr_accessor :computer_board, :player_board, :computer_moves
+  attr_accessor :computer_board, :player_board, :computer_moves, :grids
 
   def initialize(player = "Player 1", player_board = PlayerBoard.new, computer_board = ComputerBoard.new)
     @player = player
+    @grids = Grids.new
     @player_board = player_board
     @computer_board = computer_board
     @computer_moves = ComputerMoves.new.moves_to_play
@@ -50,7 +52,7 @@ class Game
   end
 
   def get_them_ships
-    puts "Put in space seperated coordinates for a small ship (2) ex: A1 A2"
+    grids.computer_message_lay_two_ships
     ship_coords_one = STDIN.gets.chomp
     player_board.grab_coords(ship_coords_one)
     puts "Put in space seperated coordinates for a big ship (3) ex: B2 B3 B4"
