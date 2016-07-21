@@ -32,7 +32,7 @@ class PlayerBoard
 
   def render
     print " **********************\n"
-    print "    YOUR BOARD       \n"
+    print "        YOUR BOARD    \n"
     print "     1    2    3    4\n"
     print "   ___________________\n"
     @board_grid.each_with_index do |row, row_num|

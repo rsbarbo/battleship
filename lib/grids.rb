@@ -2,6 +2,11 @@ require 'terminal-table/import'
 
 class Grids
 
+  def welcome_message
+    p "Welcome to BATTLESHIP"
+    p "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+  end
+
   def intructions_grid
     rows = []
     rows << ["=>", "Each player starts with a fleet of 2 ships, of length 3 and 2."]

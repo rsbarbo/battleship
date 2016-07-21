@@ -35,7 +35,7 @@ class ComputerBoard
   end
 
   def render
-    print "    COMPUTER'S BOARD\n"
+    print "     COMPUTER'S BOARD\n"
     print "     1    2    3    4\n"
     print "   ___________________\n"
     @board_grid.each_with_index do |row, row_num|
